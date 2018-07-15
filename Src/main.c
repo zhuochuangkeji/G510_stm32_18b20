@@ -45,6 +45,7 @@
 #include "ds18b20.h"
 #include "gizwits_product.h"
 #include "common.h"
+float temperature=0;
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -147,7 +148,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	int ret=0;
-	float temperature=0;
+
 
   /* USER CODE END 1 */
 
@@ -198,14 +199,9 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-			//ret=DS18B20_Init();
-		//	if(ret==0)
-	//	{
-	//	GIZWITS_LOG("18b20  ok \n");
-	//	}
-				delay_ms(1000);
 		temperature=DS18B20_Get_Temp();
-		delay_ms(1000);
+		
+		delay_ms(500);
 		GIZWITS_LOG("temperature=%f",temperature);
 		userHandle();
 		gizwitsHandle((dataPoint_t *)&currentDataPoint);

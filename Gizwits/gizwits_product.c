@@ -26,7 +26,7 @@ uint8_t aRxBuffer;
 /** User area the current device state structure*/
 dataPoint_t currentDataPoint;
 extern keysTypedef_t keys;
-
+extern float temperature;
 extern TIM_HandleTypeDef htim2;
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
@@ -133,10 +133,10 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
 */
 void userHandle(void)
 {
- /*
-    currentDataPoint.valuetemperature = ;//Add Sensor Data Collection
+ 
+    currentDataPoint.valuetemperature = temperature;//Add Sensor Data Collection
 
-    */
+    
     
 }
 

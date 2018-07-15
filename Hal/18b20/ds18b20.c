@@ -1,6 +1,6 @@
 #include "ds18b20.h"
 #include "delay.h"	
-  
+#include "common.h"
 void DS18B20_Mode_Out_PP(void)
 {
     GPIO_InitTypeDef myGPIO_InitStruct;
@@ -203,14 +203,28 @@ float DS18B20_Get_Temp(void)
 	tplsb = DS18B20_Read_Byte();		 
 	tpmsb = DS18B20_Read_Byte(); 
 	
-	s_tem = tpmsb<<8;
-	s_tem = s_tem | tplsb;
+	//s_tem = tpmsb<<8;
+	//s_tem = s_tem | tplsb;
+
+//	if( s_tem < 0 )		/* 负温度 */
+//		f_tem = (~s_tem+1) * 0.0625;	
+	//else
+	//	f_tem = s_tem * 0.0625;
 	
-	if( s_tem < 0 )		/* 负温度 */
-		f_tem = (~s_tem+1) * 0.0625;	
+		s_tem = tpmsb<<8;
+		s_tem = s_tem + tplsb;
+		GIZWITS_LOG("s_tem=&d\n");
+		if(( s_tem&0xF800)==0xF800  )		/* 负温度 */
+		{
+				GIZWITS_LOG("FUSHUO\n");
+		f_tem = (~s_tem+1) * (-0.0625);	
+		}
 	else
+	{
+		GIZWITS_LOG("ZHENGSHU\n");
 		f_tem = s_tem * 0.0625;
 	
+	}
 	return f_tem; 	
 }
 

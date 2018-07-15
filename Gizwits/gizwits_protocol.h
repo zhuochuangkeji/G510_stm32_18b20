@@ -38,12 +38,12 @@ extern "C" {
 /**@name Product Key  
 * @{
 */
-#define PRODUCT_KEY "a5430d0d99364fe7b2505a14b24653b4"
+#define PRODUCT_KEY "b61ae6804f6240839288796689807a73"
 /**@} */
 /**@name Product Secret  
 * @{
 */
-#define PRODUCT_SECRET "18802edcd1d544568b609dea75cb1654"
+#define PRODUCT_SECRET "b739db98c0c246659598626815c0e46c"
                
 /**@name Device status data reporting interval
 * @{
